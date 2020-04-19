@@ -27,17 +27,7 @@ pipeline {
       }
     }
     
-
-      
-       
-    
-    stage ('Build') {
-      steps {
-      sh 'mvn clean package'
-       }
-    }
-    
-    stage ('CODE REVIEW') {
+  stage ('CODE REVIEW') {
       steps {
        
         sh 'rm -rf DVWA'        
@@ -48,6 +38,16 @@ pipeline {
          
        }
     }
+      
+       
+    
+    stage ('Build') {
+      steps {
+      sh 'mvn clean package'
+       }
+    }
+    
+  
     
   
   stage ('Deploy-To-Tomcat') {
