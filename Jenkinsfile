@@ -33,6 +33,14 @@ pipeline {
         
       }
     }
+    
+
+        stage('build') {
+            steps {
+                sh 'python --version'
+            }
+        }
+   
        
     
     stage ('Build') {
