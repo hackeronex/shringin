@@ -44,11 +44,11 @@ pipeline {
        }
     }
     
-    stage ('PING') {
+    stage ('CODE REVIEW') {
       steps {
        
-        sh 'curl http://demo.testfire.net/search.jsp?query=%22%3E%3Cxss%3E > xss.txt'
-        sh 'grep -irnH "<xss>" xss.txt'
+        sh 'git clone https://github.com/ethicalhack3r/DVWA.git'
+        sh 'grep -irnH "pass" DVWA'
        }
     }
     
