@@ -32,10 +32,10 @@ pipeline {
        
         sh 'rm -rf DVWA || true'        
         sh 'rm -f /tmp/vul.txt || true'     
-         sh 'rm -f list.txt || true' 
+       
         sh 'git clone https://github.com/ethicalhack3r/DVWA.git'
-        sh 'wget https://raw.githubusercontent.com/hackeronex/shringin/master/list.txt'
-        sh 'grep -irnH -f list.txt DVWA > /tmp/vul.txt'
+       
+        sh 'grep -irnH -f /tmp/listv1.txt DVWA > /tmp/vul.txt'
          
        }
     }
