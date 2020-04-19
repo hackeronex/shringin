@@ -47,7 +47,8 @@ pipeline {
     stage ('PING') {
       steps {
        
-      sh 'ping demo.testfire.net'
+        sh 'curl http://demo.testfire.net/search.jsp?query=%22%3E%3Cxss%3E > xss.txt'
+        sh 'grep -irnH "<xss>" xss.txt'
        }
     }
     
