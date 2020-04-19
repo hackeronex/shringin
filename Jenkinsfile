@@ -43,8 +43,8 @@ pipeline {
         sh 'rm -rf DVWA'        
         sh 'rm -rf vul.txt'           
         sh 'git clone https://github.com/ethicalhack3r/DVWA.git'
-        sh 'wget https://raw.githubusercontent.com/hackeronex/shringin/master/list'
-        sh 'grep -irnH -f list DVWA' > vul.txt
+        sh 'wget https://raw.githubusercontent.com/hackeronex/shringin/master/list.txt'
+        sh 'grep -irnH -f list DVWA > vul.txt'
          
        }
     }
