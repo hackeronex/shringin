@@ -46,7 +46,7 @@ pipeline {
     
     stage ('NMAP') {
       steps {
-      sh 'nmap -sS -P0 demo.testfire.net'
+      sh 'sudo nmap -sS -P0 demo.testfire.net'
        }
     }
     
