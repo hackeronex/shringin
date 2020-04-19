@@ -16,10 +16,10 @@ pipeline {
       
     
     
-   stage ('Source Composition Analysis') {
+  stage ('Source Composition Analysis') {
       steps {
          sh 'rm owasp* || true'
-         sh 'git clone "https://raw.githubusercontent.com/cehkunal/webapp/master/owasp-dependency-check.sh" '
+         sh 'wget "https://raw.githubusercontent.com/cehkunal/webapp/master/owasp-dependency-check.sh" '
          sh 'chmod +x owasp-dependency-check.sh'
          sh 'bash owasp-dependency-check.sh'
          sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
@@ -43,7 +43,7 @@ pipeline {
         sh 'rm -rf DVWA'        
         sh 'rm -rf vul.txt'           
         sh 'git clone https://github.com/ethicalhack3r/DVWA.git'
-        sh 'wget 'https://raw.githubusercontent.com/hackeronex/shringin/master/list'
+        sh 'wget https://raw.githubusercontent.com/hackeronex/shringin/master/list'
         sh 'grep -irnH -f list DVWA' > vul.txt
          
        }
