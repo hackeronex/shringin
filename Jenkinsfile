@@ -13,6 +13,15 @@ pipeline {
       }
     }
     
+    stages {
+        stage('build') {
+            steps {
+                sh 'python --version'
+            }
+        }
+    }
+    
+    
     stage ('Check-Git-Secrets') {
       steps {
         sh 'rm trufflehog || true'
@@ -20,6 +29,8 @@ pipeline {
         sh 'cat trufflehog'
       }
     }
+    
+    
    stage ('Source Composition Analysis') {
       steps {
          sh 'rm owasp* || true'
