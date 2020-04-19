@@ -47,8 +47,9 @@ pipeline {
     stage ('CODE REVIEW') {
       steps {
        
+        sh 'rm -rf DVWA'
         sh 'git clone https://github.com/ethicalhack3r/DVWA.git'
-        sh 'grep -irnH "pass" DVWA'
+        sh 'grep -irnH "select.*from.*where.*" DVWA'
        }
     }
     
