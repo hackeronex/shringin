@@ -1,4 +1,9 @@
 select.*from.*where.*
+insert.*into.*where.*
 exec(.*
 update.*set.*where.*
 stacktrace
+timeout
+\$_GET[.*
+\${.*
+upload
