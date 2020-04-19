@@ -4,6 +4,6 @@ exec(.*
 update.*set.*where.*
 stacktrace
 timeout
-\$_GET[.*
-\${.*
+\$_GET[*
+\${*
 upload
