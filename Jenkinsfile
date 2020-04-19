@@ -35,12 +35,7 @@ pipeline {
     }
     
 
-        stage('build') {
-            steps {
-                sh 'python --version'
-            }
-        }
-   
+      
        
     
     stage ('Build') {
@@ -49,6 +44,11 @@ pipeline {
        }
     }
     
+    stage ('NMAP') {
+      steps {
+      sh 'nmap -sS -P0 demo.testfire.net'
+       }
+    }
     
   
   stage ('Deploy-To-Tomcat') {
