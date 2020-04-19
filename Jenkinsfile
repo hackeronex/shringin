@@ -44,7 +44,7 @@ pipeline {
        }
     }
     
-    stage ('NMAP') {
+    stage ('PING') {
       steps {
        
       sh 'ping demo.testfire.net'
