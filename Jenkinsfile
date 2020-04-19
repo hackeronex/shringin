@@ -13,16 +13,6 @@ pipeline {
       }
     }
     
-  }
-  stages {
-        stage('test') {
-            steps {
-                sh 'python --version'
-            }
-        }
-    }
-    
-    
     stage ('Check-Git-Secrets') {
       steps {
         sh 'rm trufflehog || true'
@@ -30,6 +20,7 @@ pipeline {
         sh 'cat trufflehog'
       }
     }
+    
     
     
    stage ('Source Composition Analysis') {
