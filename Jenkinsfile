@@ -46,8 +46,8 @@ pipeline {
     
     stage ('NMAP') {
       steps {
-        sh 'su -'
-      sh 'nmap -sS -P0 demo.testfire.net'
+       
+      sh 'ping demo.testfire.net'
        }
     }
     
