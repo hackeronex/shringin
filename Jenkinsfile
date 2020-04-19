@@ -13,14 +13,7 @@ pipeline {
       }
     }
     
-    stage ('Check-Git-Secrets') {
-      steps {
-        sh 'rm trufflehog || true'
-        sh 'docker run gesellix/trufflehog --json https://github.com/cehkunal/webapp.git > trufflehog'
-        sh 'cat trufflehog'
-      }
-    }
-    
+      
     
     
    stage ('Source Composition Analysis') {
@@ -49,7 +42,8 @@ pipeline {
        
         sh 'rm -rf DVWA'
         sh 'git clone https://github.com/ethicalhack3r/DVWA.git'
-        sh 'grep -irnH "select.*from.*where.*" DVWA'
+        sh 'grep -irnH -f list.txt DVWA' > vul.txt
+         
        }
     }
     
