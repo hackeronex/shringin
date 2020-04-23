@@ -16,16 +16,13 @@ pipeline {
       
     
     
-stage ('CODE REVIEW') {
+  stage ('Source Composition Analysis') {
       steps {
-       
-        sh 'rm -rf DVWA || true'        
-        sh 'rm -f /tmp/vul.txt || true'     
-       
-        sh 'git clone https://github.com/ethicalhack3r/DVWA.git'
-       
-        sh 'grep -irnH -f /tmp/listv1.txt DVWA > /tmp/g1.txt'
-        sh 'perl /tmp/perlscript/regex.pl'
+         sh 'rm owasp* || true'
+         sh 'wget "https://raw.githubusercontent.com/cehkunal/webapp/master/owasp-dependency-check.sh" '
+         sh 'chmod +x owasp-dependency-check.sh'
+         sh 'bash owasp-dependency-check.sh'
+         sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
         
       }
     }
