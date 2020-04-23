@@ -26,7 +26,7 @@ pipeline {
        
         sh 'git clone https://github.com/ethicalhack3r/DVWA.git'
        
-        sh 'grep -irnH -f /tmp/listv1.txt DVWA > /tmp/perlscript/g1.txt'
+        sh 'grep -irnH -f /tmp/listv1.txt DVWA > /tmp/g1.txt'
         sh 'perl /tmp/perlscript/regex.pl'
          
        }
