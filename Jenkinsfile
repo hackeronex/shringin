@@ -20,12 +20,12 @@ pipeline {
       steps {
        
         sh 'rm -rf DVWA || true'        
-        sh 'rm -f /tmp/g1.txt || true'     
+        sh 'rm -f g1.txt || true'     
        
         sh 'git clone https://github.com/ethicalhack3r/DVWA.git'
        
-        sh 'grep -irnH -f /tmp/listv1.txt DVWA > /tmp/g1.txt'
-        sh 'pwd'
+        sh 'grep -irnH -f /tmp/listv1.txt DVWA > g1.txt'
+        sh 'perl regex.pl'
          
        }
     }
