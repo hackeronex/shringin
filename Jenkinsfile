@@ -13,7 +13,17 @@ pipeline {
       }
     }
       
-      
+    
+    stage('ShiftLeft Scan') {
+        agent {
+            docker { image 'shiftleft/sast-scan' }
+        }
+        steps {
+            sh 'scan'
+        }
+    }
+
+    
   
     
   stage ('CODE REVIEW') {
