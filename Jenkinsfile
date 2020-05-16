@@ -34,7 +34,7 @@ pipeline {
       stage ('NIKTO') {
       steps {
        
-        sh 'nikto -h demo.testfire.net > nikto-output.txt'     
+        sh 'nikto -h demo.testfire.net > /tmp/nikto-output.txt'     
         
          
        }
