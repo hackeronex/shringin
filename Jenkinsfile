@@ -31,6 +31,15 @@ pipeline {
        }
     }
       
+      stage ('NIKTO') {
+      steps {
+       
+        sh 'nikto -h demo.testfire.net > nikto-output.txt'     
+        
+         
+       }
+    }
+    
        
     
     stage ('Build') {
@@ -42,13 +51,7 @@ pipeline {
   
     
   
-  stage ('Deploy-To-Tomcat') {
-            steps {
-           sshagent(['tomcat']) {
-                sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@18.191.104.44:/prod/apache-tomcat-8.5.54/webapps/webapp.war'
-              }      
-           }       
-    }
+  
     
     stage ('DAST') {
       steps {
