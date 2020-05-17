@@ -24,7 +24,7 @@ pipeline {
    stage ('DIRB') {
       steps {
          sh 'rm -rf /tmp/dirbs.txt'
-         sh 'docker run --rm hypnza/dirbuster -u demo.testfire.net > /tmp/dirbs.txt'     
+         sh 'docker run --rm hypnza/dirbuster -u http://demo.testfire.net/ > /tmp/dirbs.txt'     
         
       }
     }
