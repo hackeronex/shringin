@@ -1,37 +1,19 @@
 pipeline {
   agent any 
-  
-  stages {
-       
-    stage ('SSL scan') {
+ stages {      
+   
+   stage ('Source Composition Analysis') {
       steps {
-         sh 'sslscan --no-fail demo.testfire.net > /tmp/sslscan.txt'
+         sh 'rm owasp* || true'
+         sh 'wget "https://raw.githubusercontent.com/cehkunal/webapp/master/owasp-dependency-check.sh" '
+         sh 'chmod +x owasp-dependency-check.sh'
+         sh 'bash owasp-dependency-check.sh'
+         sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
         
       }
     }
-    
-     stage ('NMAP') {
-      steps {
-       
-        sh 'docker run --rm uzyexe/nmap -sS -P0 demo.testfire.net > /tmp/nmap-out.txt'            
-         
-       }
-    }
-    
-   stage ('ZAP') {
-      steps {
-        sshagent(['zap']) {
-         sh 'ssh -o  StrictHostKeyChecking=no ubuntu@18.218.230.81 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://demo.testfire.net/ > /tmp/zaped.txt" || true'
-        }
-      }
-    
-    stage ('Build') {
-      steps {
-      sh 'mvn clean package'
-       }
-    }
-    
-    stage ('NIKTO') {
+   
+      stage ('NIKTO') {
       steps {
        
         sh 'nikto -h demo.testfire.net > /tmp/nikto-output.txt'     
@@ -39,15 +21,13 @@ pipeline {
          
        }
     }   
-    
-    
-    stage ('ZAP') {
+   
+    stage ('DAST') {
       steps {
         sshagent(['zap']) {
-         sh 'ssh -o  StrictHostKeyChecking=no ubuntu@18.218.230.81 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://demo.testfire.net" || true'
+         sh 'ssh -o  StrictHostKeyChecking=no ubuntu@18.218.230.81 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://demo.testfire.net/" || true'
         }
       }
     }
-    
   }
-}
+  }
