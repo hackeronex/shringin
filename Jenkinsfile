@@ -2,13 +2,9 @@ pipeline {
   agent any 
  stages {      
    
-   stage ('Source Composition Analysis') {
+   stage ('SSL scan') {
       steps {
-         sh 'rm owasp* || true'
-         sh 'wget "https://raw.githubusercontent.com/cehkunal/webapp/master/owasp-dependency-check.sh" '
-         sh 'chmod +x owasp-dependency-check.sh'
-         sh 'bash owasp-dependency-check.sh'
-         sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
+         sh 'sslscan --no-fail demo.testfire.net > /tmp/sslscan.txt'
         
       }
     }
