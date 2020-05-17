@@ -24,7 +24,7 @@ pipeline {
    stage ('DIRB') {
       steps {
          sh 'rm -rf /tmp/dirbs.txt'
-         sh 'dirb http://demo.testfire.net /usr/share/dirb/wordlists/vulns/common.txt > /tmp/dirbs.txt'     
+         sh 'dirb http://demo.testfire.net > /tmp/dirbs.txt'     
         
       }
     }
