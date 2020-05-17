@@ -4,7 +4,7 @@ pipeline {
    
    stage ('SSL scan') {
       steps {
-         sh 'sslscan --no-fail demo.testfire.net'
+         sh 'sslscan --no-fail demo.testfire.net > /tmp/sslscan.txt'
         
       }
     }
