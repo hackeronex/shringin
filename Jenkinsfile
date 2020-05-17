@@ -19,6 +19,16 @@ pipeline {
          
        }
     }  
+   
+   
+   stage ('DIRB') {
+      steps {
+         sh 'rm -rf /tmp/dirbs.txt'
+         sh 'docker run --rm hypnza/dirbuster -u demo.testfire.net > /tmp/dirbs.txt'     
+        
+      }
+    }
+   
    stage ('NIKTO') {
       steps {
          sh 'rm -rf /tmp/niktos.txt'
