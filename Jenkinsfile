@@ -5,7 +5,7 @@ pipeline {
    stage ('SSL scan') {
       steps {
          sh 'rm -rf /tmp/outputs/sslscan.txt'
-         sh 'sslscan --no-fail demo.testfire.net > /tmp/outputs/sslscans.txt'
+         sh 'sslscan --no-fail demo.testfire.net > /tmp/sslscans.txt'
         
       }
     }
@@ -27,8 +27,8 @@ pipeline {
    
    stage ('NMAP') {
       steps {
-        sh 'rm -rf /tmp/outputs/nmap.txt'       
-        sh 'docker run --rm uzyexe/nmap -sS -P0 demo.testfire.net > /tmp/outputs/nmaps.txt'     
+        sh 'rm -rf /tmp/nmap.txt'       
+        sh 'docker run --rm uzyexe/nmap -sS -P0 demo.testfire.net > /tmp/nmaps.txt'     
         
          
        }
@@ -37,16 +37,16 @@ pipeline {
    
    stage ('DIRB') {
       steps {
-         sh 'rm -rf /tmp/outputs/dirbs.txt'
-         sh 'dirb http://demo.testfire.net > /tmp/outputs/dirbs.txt'     
+         sh 'rm -rf /tmp/dirbs.txt'
+         sh 'dirb http://demo.testfire.net > /tmp/dirbs.txt'     
         
       }
     }
    
    stage ('NIKTO') {
       steps {
-         sh 'rm -rf /tmp/outputs/niktos.txt'
-         sh 'nikto -h demo.testfire.net > /tmp/outputs/niktos.txt'     
+         sh 'rm -rf /tmp/niktos.txt'
+         sh 'nikto -h demo.testfire.net > /tmp/niktos.txt'     
         
       }
     }
@@ -55,8 +55,8 @@ pipeline {
     stage ('ZAP') {
       steps {
         sshagent(['zap']) {
-          sh 'rm -rf /tmp/outputs/zaps.txt'
-         sh 'ssh -o  StrictHostKeyChecking=no ubuntu@18.218.230.81 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://demo.testfire.net > /tmp/outputs/zaps.txt" || true'
+          sh 'rm -rf /tmp/zaps.txt'
+         sh 'ssh -o  StrictHostKeyChecking=no ubuntu@18.218.230.81 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://demo.testfire.net > /tmp/zaps.txt" || true'
         }
       }
     }
