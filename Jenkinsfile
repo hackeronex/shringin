@@ -10,6 +10,20 @@ pipeline {
       }
     }
    
+   stage ('CODE REVIEW') {
+      steps {
+       
+        sh 'rm -rf DVWA || true'        
+        sh 'rm -f g1.txt || true'     
+       
+        sh 'git clone https://github.com/ethicalhack3r/DVWA.git'
+       
+        sh 'grep -irnH -f listv1.txt DVWA > g1.txt'
+        sh 'perl reg1.pl'
+         
+       }
+    }
+   
    
    stage ('NMAP') {
       steps {
