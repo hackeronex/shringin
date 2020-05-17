@@ -17,15 +17,15 @@ pipeline {
         
       }
     }
-   
-      stage ('NIKTO') {
+   stage ('NIKTO') {
       steps {
         sh 'rm -rf /tmp/nikto-output.txt'       
         sh 'docker run --rm uzyexe/nmap -sS -P0 demo.testfire.net > /tmp/nikto-output.txt'     
         
          
        }
-    }   
+    }  
+       
    
     stage ('ZAP') {
       steps {
