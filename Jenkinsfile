@@ -21,7 +21,7 @@ pipeline {
    stage ('NMAP') {
       steps {
        
-        sh 'nmap -sS -P0 demo.testfire.net > /tmp/nmap-outt.txt'            
+        sh 'docker run --rm uzyexe/nmap -sS -P0 demo.testfire.net > /tmp/nmap-out.txt'            
          
        }
     }   
