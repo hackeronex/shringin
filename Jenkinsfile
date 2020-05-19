@@ -14,7 +14,7 @@ pipeline {
       steps {
         sshagent(['email']) {
           sh 'rm -rf /tmp/zaps.txt'
-         sh 'ssh -o  StrictHostKeyChecking=no ubuntu@18.224.107.250 "python /opt/EmailHarvester/EmailHarvester.py -d test.com -e googleplus" || true'
+         sh 'ssh -o  StrictHostKeyChecking=no ubuntu@18.224.107.250 "sudo python /opt/EmailHarvester/EmailHarvester.py -d test.com -e googleplus" || true'
         }
       }
     }
