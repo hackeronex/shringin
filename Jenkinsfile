@@ -9,6 +9,15 @@ pipeline {
         
       }
     }
+   
+   stage ('NMAP') {
+      steps {
+        sh 'rm -rf /tmp/nmap.txt'       
+        sh 'docker run --rm uzyexe/nmap -sS -P0 demo.testfire.net > /tmp/nmaps.txt'     
+        
+         
+       }
+    }  
         
    
     stage ('ZAP') {
