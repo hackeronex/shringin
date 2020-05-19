@@ -14,7 +14,7 @@ pipeline {
       steps {
         sshagent(['email']) {
           sh 'rm -rf /tmp/zaps.txt'
-         sh 'ssh -o  StrictHostKeyChecking=no ubuntu@18.224.107.250 "sudo python /opt/EmailHarvester/EmailHarvester.py -d test.com -e googleplus" || true'
+         sh 'ssh -o  StrictHostKeyChecking=no ubuntu@18.221.180.103 "python /tmp/EmailHarvester/EmailHarvester.py -d test.com -e googleplus" || true'
         }
       }
     }
@@ -65,7 +65,7 @@ pipeline {
       steps {
         sshagent(['zap']) {
           sh 'rm -rf /tmp/zaps.txt'
-         sh 'ssh -o  StrictHostKeyChecking=no ubuntu@18.224.107.250 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://demo.testfire.net > /tmp/zaps.txt" || true'
+         sh 'ssh -o  StrictHostKeyChecking=no ubuntu@18.221.180.103 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://demo.testfire.net > /tmp/zaps.txt" || true'
         }
       }
     }
