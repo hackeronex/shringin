@@ -22,7 +22,7 @@ pipeline {
    stage ('Harvest') {
       steps {
         sh 'rm -rf /tmp/harv.txt'       
-        sh 'docker run -ti --rm beardyjay/theharvester -d microsoft.com -l 500 -b google > /tmp/harv.txt'     
+        sh 'python3 /tmp/EmailHarvester/EmailHarvester.py -d microsoft.com -l 500 -e   google > /tmp/harv.txt'     
         
          
        }
