@@ -14,7 +14,7 @@ pipeline {
       steps {
         sshagent(['email']) {
           sh 'rm -rf /tmp/zaps.txt'
-         sh 'ssh -o  StrictHostKeyChecking=no ubuntu@18.221.180.103 "python /tmp/EmailHarvester/EmailHarvester.py -d test.com -e googleplus" || true'
+         sh 'ssh -o  StrictHostKeyChecking=no ubuntu@18.221.180.103 "docker run -ti --rm beardyjay/theharvester -d microsoft.com -l 500 -b google > /tmp/eml.txt" || true'
         }
       }
     }
