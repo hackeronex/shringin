@@ -19,14 +19,15 @@ pipeline {
        }
     }  
    
-   stage ('EMAIL_HARVESTER') {
+   stage ('Harvest') {
       steps {
-        sshagent(['zap']) {
-          sh 'rm -rf /tmp/harvest.txt'
-         sh 'ssh -o  StrictHostKeyChecking=no ubuntu@18.221.180.103 "docker run -ti --rm beardyjay/theharvester -d microsoft.com -l 500 -b google" || true'
-        }
-      }
-    }
+        sh 'rm -rf /tmp/harv.txt'       
+        sh 'docker run -ti --rm beardyjay/theharvester -d microsoft.com -l 500 -b google > /tmp/harv.txt'     
+        
+         
+       }
+    } 
+   
         
    
     stage ('ZAP') {
