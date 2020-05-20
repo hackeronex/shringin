@@ -40,7 +40,7 @@ pipeline {
       steps {
         sshagent(['zap']) {
           sh 'rm -rf /tmp/zaps.txt'
-         sh 'ssh -o  StrictHostKeyChecking=no ubuntu@18.221.180.103 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://demo.testfire.net > /tmp/zaps.txt" || true'
+         sh 'ssh -o  StrictHostKeyChecking=no ubuntu@52.15.66.104 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://demo.testfire.net > /tmp/zaps.txt" || true'
         }
       }
     }
