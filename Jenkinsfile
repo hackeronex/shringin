@@ -19,15 +19,21 @@ pipeline {
        }
     }  
    
-   stage ('Harvest') {
+    stage ('NIKTO') {
       steps {
-        sh 'rm -rf /tmp/harv.txt'       
-        sh 'python3 /tmp/EmailHarvester/EmailHarvester.py -d microsoft.com -l 500 -e   google > /tmp/harv.txt'     
+         sh 'rm -rf /tmp/niktos.txt'
+         sh 'nikto -h demo.testfire.net > /tmp/niktos.txt'     
         
-         
-       }
-    } 
+      }
+    }
    
+  stage ('DIRB') {
+      steps {
+         sh 'rm -rf /tmp/dirbs.txt'
+         sh 'dirb http://demo.testfire.net > /tmp/dirbs.txt'     
+        
+      }
+    }   
         
    
     stage ('ZAP') {
